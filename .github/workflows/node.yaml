@@ -23,6 +23,7 @@ jobs:
         with:
           node-version: 22.x
           cache: 'npm'
+        working-directory: ./client
 
       - name: Install frontend dependencies
         run: npm ci
@@ -48,6 +49,7 @@ jobs:
         with:
           node-version: 22.x
           cache: 'npm'
+        working-directory: ./server
 
       - name: Install backend dependencies
         run: npm ci
