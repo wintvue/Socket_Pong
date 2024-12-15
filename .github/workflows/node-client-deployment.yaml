@@ -39,5 +39,6 @@ jobs:
 
       - name: Deploy to Vercel
         run: npx vercel --prod --token=$VERCEL_TOKEN --yes
+        working-directory: ./client
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
