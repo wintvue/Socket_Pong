@@ -34,7 +34,11 @@ jobs:
         working-directory: ./client
 
       - name: Build frontend
-        run: npm run build:production
+        run: npm run build
+        working-directory: ./client
+
+      - name: Start backend server
+        run: npm run start
         working-directory: ./client
 
       - name: Deploy to Vercel
