@@ -4,8 +4,6 @@
 name: Node.js Frontend Deployment
 
 on:
-  push:
-    branches: [ "main" ]
   workflow_dispatch: # Allows manual triggering of the workflow
     inputs:
       branch:
