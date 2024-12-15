@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pong Game</title>
+    <style>
+        canvas {
+            background: linear-gradient(45deg, #1d2b53, #962861);
+            display: block;
+            margin: 0 auto;
+            border: 5px solid #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        }
+
+        #winner {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-size: 24px;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="gameCanvas" width="400" height="300"></canvas>
+    <div id="winner">
+        <button id="resetButton" style="display: block; 
+               margin: 20px auto; 
+               padding: 10px 20px; 
+               font-size: 16px; 
+               background: linear-gradient(45deg, #c632da, #3962d2);
+               cursor: pointer;">
+            Reset Game
+        </button>
+    </div>
+    <script src="client.js">
+    </script>
+</body>
+
+</html>
