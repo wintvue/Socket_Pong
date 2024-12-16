@@ -4,7 +4,7 @@
   "scripts": {
     "start": "npx vite",
     "start:local": "http-server",
-    "build": "",
+    "build": "mkdir -p dist && cp -r * dist/",
     "test": "jest --passWithNoTests"
   },
   "dependencies": {
