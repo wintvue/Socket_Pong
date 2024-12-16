@@ -1,0 +1,44 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Node.js Frontend Deployment
+
+on:
+  workflow_dispatch: # Allows manual triggering of the workflow
+    inputs:
+      branch:
+        description: "The branch to deploy"
+        required: false
+        default: "main"
+
+jobs:
+  deploy:
+    name: Deploy Client to Vercel
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+
+      - name: Install frontend dependencies
+        run: npm ci
+        working-directory: ./client
+
+      - name: Run frontend tests
+        run: npm test --passWithNoTests
+        working-directory: ./client
+
+      - name: Build frontend
+        run: npm run build
+        working-directory: ./client
+
+      - name: Deploy to Vercel
+        run: npx vercel --prod --token=$VERCEL_TOKEN --yes
+        working-directory: ./client
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
