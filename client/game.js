@@ -4,13 +4,12 @@
 export function initializeGame(websocketUrl) {
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
+    const resetButton = document.getElementById('resetButton');
     let socket;
-    addResetListener();
-
     // Get the WebSocket URL from environment variables
-    console.log(websocketUrl);
     socket = new WebSocket(websocketUrl);
 
+    addResetListener();
     let playerNumber;
     let gameState;
     let gameActive = true;
@@ -21,7 +20,6 @@ export function initializeGame(websocketUrl) {
 
     socket.onmessage = (message) => {
         const data = JSON.parse(message.data);
-        // console.log("Message received:", data);
         if (data.type === 'start') {
             playerNumber = data.player;
             alert(`You are Player ${playerNumber}`);
@@ -103,19 +101,19 @@ export function initializeGame(websocketUrl) {
         });
     }
 
+    function requestRestart() {
+        if (socket && socket.readyState === WebSocket.OPEN) {
+            socket.send(JSON.stringify({ type: 'restart' }));
+        }
+    }
+    
+    function endGame() {
+        if (socket && socket.readyState === WebSocket.OPEN) {
+            socket.send(JSON.stringify({ type: 'end' }));
+        }
+    }
+
     // gameLoop();
-}
-
-function requestRestart() {
-    if (socket && socket.readyState === WebSocket.OPEN) {
-        socket.send(JSON.stringify({ type: 'restart' }));
-    }
-}
-
-function endGame() {
-    if (socket && socket.readyState === WebSocket.OPEN) {
-        socket.send(JSON.stringify({ type: 'end' }));
-    }
 }
 
 // initializeGame();
