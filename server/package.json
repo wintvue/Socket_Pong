@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "node server.js",
-    "build": "echo 'Production build complete!'",
+    "build": "npm install",
     "build:production": "babel . --out-dir public --ignore node_modules",
     "test": "jest --passWithNoTests"
   },
